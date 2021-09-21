@@ -11,3 +11,7 @@ export interface WangEditorProps<T extends string = string> {
   onFocus?: (value: T) => void;
   onBlur?: (value: T) => void;
 }
+
+export interface WangEditorRef {
+  editor: Editor;
+}

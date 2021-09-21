@@ -1,5 +1,5 @@
-import { WangEditorConfig, WangEditorProps } from './interface';
+import { WangEditorConfig, WangEditorProps, WangEditorRef } from './interface';
 import WangEditor from './WangEditor';
 
-export { WangEditorConfig, WangEditorProps };
+export { WangEditorConfig, WangEditorProps, WangEditorRef };
 export default WangEditor;

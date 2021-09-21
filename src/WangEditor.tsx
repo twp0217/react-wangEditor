@@ -4,10 +4,10 @@ import { WangEditorConfig, WangEditorProps, WangEditorRef } from './interface';
 
 const WangEditor = React.forwardRef(
   (props: WangEditorProps, ref: React.Ref<WangEditorRef>) => {
-    const { config, defaultValue, value } = props;
+    const { config, disabled, defaultValue, value } = props;
 
     const divRef = React.useRef<HTMLDivElement>(null);
-    const editorRef = React.useRef<Editor>();
+    const editorRef = React.useRef<Editor | null>(null);
 
     const [innerValue, setInnerValue] = React.useState<string | undefined>(
       value || defaultValue,
@@ -35,12 +35,12 @@ const WangEditor = React.forwardRef(
           config?.onblur?.(html);
           props.onBlur?.(html);
         },
-        placeholder: props.placeholder || config?.placeholder || '',
+        placeholder: config?.placeholder || props.placeholder,
       };
     };
 
     const initEditor = (): void => {
-      if (!!divRef.current) {
+      if (divRef.current) {
         const editor = new Editor(divRef.current);
         Object.assign(editor.config, getWangEditorConfig());
         editor.create();
@@ -52,6 +52,7 @@ const WangEditor = React.forwardRef(
     const destroyEditor = (): void => {
       if (editorRef.current) {
         editorRef.current.destroy();
+        editorRef.current = null;
       }
     };
 
@@ -63,7 +64,17 @@ const WangEditor = React.forwardRef(
     }, [divRef]);
 
     React.useEffect(() => {
-      if (!!editorRef.current && innerValue !== value) {
+      if (editorRef.current) {
+        if (disabled) {
+          editorRef.current.disable();
+        } else {
+          editorRef.current.enable();
+        }
+      }
+    }, [disabled]);
+
+    React.useEffect(() => {
+      if (editorRef.current && innerValue !== value) {
         editorRef.current.txt.html(value);
       }
     }, [value]);
@@ -71,5 +82,11 @@ const WangEditor = React.forwardRef(
     return <div ref={divRef} />;
   },
 );
+
+const defaultProps: WangEditorProps = {
+  placeholder: '',
+  disabled: false,
+};
+WangEditor.defaultProps = defaultProps;
 
 export default WangEditor;

@@ -5,6 +5,7 @@ export type WangEditorConfig = Partial<Editor['config']>;
 export interface WangEditorProps<T extends string = string> {
   config?: WangEditorConfig;
   placeholder?: string;
+  disabled?: boolean;
   defaultValue?: T;
   value?: T;
   onChange?: (value: T) => void;

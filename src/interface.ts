@@ -6,6 +6,7 @@ export interface WangEditorProps<T extends string = string> {
   config?: WangEditorConfig;
   placeholder?: string;
   disabled?: boolean;
+  autoFocus?: boolean;
   defaultValue?: T;
   value?: T;
   onChange?: (value: T) => void;

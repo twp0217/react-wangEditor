@@ -27,15 +27,17 @@ export default () => {
 
 ### WangEditorProps
 
-| 名称         | 类型                    | 默认值 | 说明             |
-| ------------ | ----------------------- | ------ | ---------------- |
-| config       | WangEditorConfig        | -      | 编辑器配置       |
-| placeholder  | React.CSSProperties     | -      | 编辑器输入框提示 |
-| defaultValue | string                  | -      | 编辑器默认内容   |
-| value        | string                  | -      | 编辑器内容       |
-| onChange     | (value: string) => void | -      | 内容变化时的回调 |
-| onFocus      | (value: string) => void | -      | 获得焦点时的回调 |
-| onBlur       | (value: string) => void | -      | 失去焦点时的回调 |
+| 名称         | 类型                    | 默认值  | 说明             |
+| ------------ | ----------------------- | ------- | ---------------- |
+| config       | WangEditorConfig        | -       | 编辑器配置       |
+| placeholder  | string                  | -       | 输入框提示       |
+| disabled     | boolean                 | `false` | 是否禁用         |
+| autoFocus    | boolean                 | `false` | 自动获取焦点     |
+| defaultValue | string                  | -       | 编辑器默认内容   |
+| value        | string                  | -       | 编辑器内容       |
+| onChange     | (value: string) => void | -       | 内容变化时的回调 |
+| onFocus      | (value: string) => void | -       | 获得焦点时的回调 |
+| onBlur       | (value: string) => void | -       | 失去焦点时的回调 |
 
 ## 支持
 

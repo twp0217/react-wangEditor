@@ -2,6 +2,15 @@ import React from 'react';
 import Editor from 'wangeditor';
 import { WangEditorConfig, WangEditorProps, WangEditorRef } from './interface';
 
+const defaultProps: WangEditorProps = {
+  placeholder: '',
+  disabled: false,
+  autoFocus: false,
+  config: {
+    zIndex: 1,
+  },
+};
+
 const WangEditor = React.forwardRef(
   (props: WangEditorProps, ref: React.Ref<WangEditorRef>) => {
     const { config, disabled, defaultValue, value } = props;
@@ -21,6 +30,9 @@ const WangEditor = React.forwardRef(
 
     const getWangEditorConfig = (): WangEditorConfig => {
       return {
+        ...defaultProps.config,
+        placeholder: props.placeholder,
+        focus: props.autoFocus,
         ...config,
         onchange: (html: string) => {
           config?.onchange?.(html);
@@ -35,7 +47,6 @@ const WangEditor = React.forwardRef(
           config?.onblur?.(html);
           props.onBlur?.(html);
         },
-        placeholder: config?.placeholder || props.placeholder,
       };
     };
 
@@ -83,10 +94,6 @@ const WangEditor = React.forwardRef(
   },
 );
 
-const defaultProps: WangEditorProps = {
-  placeholder: '',
-  disabled: false,
-};
 WangEditor.defaultProps = defaultProps;
 
 export default WangEditor;

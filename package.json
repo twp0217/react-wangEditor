@@ -1,6 +1,6 @@
 {
   "name": "@twp0217/react-wangeditor",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "wangEditor component for React",
   "scripts": {
     "start": "dumi dev",

@@ -6,6 +6,8 @@ export type Container = HTMLElement | (() => HTMLElement);
 
 export interface WangEditorProps<T extends string = string> {
   config?: WangEditorConfig;
+  className?: string;
+  style?: React.CSSProperties;
   placeholder?: string;
   disabled?: boolean;
   autoFocus?: boolean;

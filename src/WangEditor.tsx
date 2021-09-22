@@ -14,7 +14,8 @@ const defaultProps: WangEditorProps = {
 
 const WangEditor = React.forwardRef(
   (props: WangEditorProps, ref: React.Ref<WangEditorRef>) => {
-    const { config, disabled, toolbar, defaultValue, value } = props;
+    const { config, className, style, disabled, toolbar, defaultValue, value } =
+      props;
 
     const editorContainerRef = React.useRef<HTMLDivElement>(null);
     const editorRef = React.useRef<Editor | null>(null);
@@ -94,7 +95,7 @@ const WangEditor = React.forwardRef(
       }
     }, [value]);
 
-    return <div ref={editorContainerRef} />;
+    return <div className={className} style={style} ref={editorContainerRef} />;
   },
 );
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Editor from 'wangeditor';
 import { WangEditorConfig, WangEditorProps, WangEditorRef } from './interface';
+import { getContainer } from './utils';
 
 const defaultProps: WangEditorProps = {
   placeholder: '',
@@ -13,9 +14,9 @@ const defaultProps: WangEditorProps = {
 
 const WangEditor = React.forwardRef(
   (props: WangEditorProps, ref: React.Ref<WangEditorRef>) => {
-    const { config, disabled, defaultValue, value } = props;
+    const { config, disabled, toolbar, defaultValue, value } = props;
 
-    const divRef = React.useRef<HTMLDivElement>(null);
+    const editorContainerRef = React.useRef<HTMLDivElement>(null);
     const editorRef = React.useRef<Editor | null>(null);
 
     const [innerValue, setInnerValue] = React.useState<string | undefined>(
@@ -51,8 +52,11 @@ const WangEditor = React.forwardRef(
     };
 
     const initEditor = (): void => {
-      if (divRef.current) {
-        const editor = new Editor(divRef.current);
+      if (editorContainerRef.current) {
+        const toolbarContainer = getContainer(toolbar);
+        const editor = toolbarContainer
+          ? new Editor(toolbarContainer, editorContainerRef.current)
+          : new Editor(editorContainerRef.current);
         Object.assign(editor.config, getWangEditorConfig());
         editor.create();
         editor.txt.html(innerValue);
@@ -72,7 +76,7 @@ const WangEditor = React.forwardRef(
       return () => {
         destroyEditor();
       };
-    }, [divRef]);
+    }, [toolbar, editorContainerRef]);
 
     React.useEffect(() => {
       if (editorRef.current) {
@@ -90,7 +94,7 @@ const WangEditor = React.forwardRef(
       }
     }, [value]);
 
-    return <div ref={divRef} />;
+    return <div ref={editorContainerRef} />;
   },
 );
 

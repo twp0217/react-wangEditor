@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/twp0217/react-wangEditor/compare/v1.1.0...v1.2.0) (2021-09-22)
+
+### Features
+
+- 菜单和编辑区域分离 ([5f1c6ff](https://github.com/twp0217/react-wangEditor/commit/5f1c6ff6a49ef9fac2d760738374e1f7f6d42f21))
+- 增加样式相关属性 ([c084bdb](https://github.com/twp0217/react-wangEditor/commit/c084bdb3ab5c7a4d5eae1412e67e5b2b74fbd630))
+
 # [1.1.0](https://github.com/twp0217/react-wangEditor/compare/v1.0.0...v1.1.0) (2021-09-21)
 
 ### Features
